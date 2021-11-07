@@ -1,5 +1,5 @@
 {
-  "name": "anna-formatter",
+	"name": "anna-formatter",
 	"displayName": "anna-formatter",
 	"description": "Formatter for ANNA Assembly language",
 	"version": "0.0.1",
@@ -7,19 +7,13 @@
 		"vscode": "^1.62.0"
 	},
 	"categories": [
-		"Other"
+		"Formatters"
 	],
 	"activationEvents": [
-        "onCommand:anna-formatter.helloWorld"
+		"onLanguage:anna"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
-		"commands": [
-			{
-				"command": "anna-formatter.helloWorld",
-				"title": "Hello World"
-			}
-		]
 	},
 	"scripts": {
 		"vscode:prepublish": "yarn run compile",
