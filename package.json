@@ -3,6 +3,8 @@
 	"displayName": "anna-formatter",
 	"description": "Formatter for ANNA Assembly language",
 	"version": "0.0.1",
+	"repository": "https://github.com/garyhtou/vscode-anna-formatter",
+	"author": "Gary Tou <gary@garytou.com> (https://garytou.com)",
 	"engines": {
 		"vscode": "^1.62.0"
 	},
