@@ -48,7 +48,7 @@ export function activate(context: vscode.ExtensionContext) {
 				}
 
 				const text = line.text;
-				const labelRegexResult = text.match(/(\s*)([a-zA-Z0-9_]+)(:)(\s*)(.*)/);
+				const labelRegexResult = text.match(/(^\s*)([a-zA-Z0-9_]+)(:)(\s*)(.*)/);
 
 				vscode.window.showInformationMessage(
 					`${labelRegexResult ? JSON.stringify(labelRegexResult) : 'null'}`
