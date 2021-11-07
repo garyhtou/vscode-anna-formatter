@@ -24,10 +24,13 @@ export function activate(context: vscode.ExtensionContext) {
 		provideDocumentFormattingEdits(
 			document: vscode.TextDocument
 		): vscode.TextEdit[] {
+			// Find the max label length
 			var maxLabelLength: number = 0;
 			for (var i = 0; i < document.lineCount; i++) {
 				const line = document.lineAt(i);
 				const text = line.text;
+
+				// Regex match for label
 				const labelRegexResult = text.match(/(\s*)([a-zA-Z0-9_]+)(:)/);
 				if (labelRegexResult) {
 					const label = labelRegexResult[2];
@@ -35,26 +38,30 @@ export function activate(context: vscode.ExtensionContext) {
 				}
 			}
 
-			maxLabelLength += maxLabelLength % 2 === 0 ? 2 : 3; // add padding and make it even
+			// Add padding between end of longest label and code
+			// also make the index amount even
+			maxLabelLength += maxLabelLength % 2 === 0 ? 2 : 3;
 
+			// Begin making edits
 			const edits: vscode.TextEdit[] = [];
 			for (var i = 0; i < document.lineCount; i++) {
 				const line = document.lineAt(i);
 
-				// Clear whitespace lines
+				// If line is only whitespace (or empty), make it empty
 				if (line.isEmptyOrWhitespace) {
 					edits.push(new vscode.TextEdit(line.range, ''));
 					continue;
 				}
 
 				const text = line.text;
-				const labelRegexResult = text.match(/(^\s*)([a-zA-Z0-9_]+)(:)(\s*)(.*)/);
-
-				vscode.window.showInformationMessage(
-					`${labelRegexResult ? JSON.stringify(labelRegexResult) : 'null'}`
+				const labelRegexResult = text.match(
+					/(^\s*)([a-zA-Z0-9_]+)(:)(\s*)(.*)/
 				);
+
+				// If label regex is successful, the line contains a label
 				if (labelRegexResult) {
 					const label = labelRegexResult[2];
+					// Calculating the padding needed after this label
 					const paddingLen = maxLabelLength - label.length - 1; // - 1 for the colon
 
 					edits.push(
@@ -63,15 +70,17 @@ export function activate(context: vscode.ExtensionContext) {
 							label + ':' + ' '.repeat(paddingLen) + labelRegexResult[5]
 						)
 					);
-				} else {
-					// no label
+				}
+				// The line contains no label
+				else {
+					// Cature code by remove leading whitespace
 					const codeRegexOutput = text.match(/(^\s*)(.*$)/);
 					if (codeRegexOutput) {
 						const prefixedSpace = codeRegexOutput[1];
 						const code = codeRegexOutput[2];
+						// Check if this line has a guttered comment
 						if (prefixedSpace.length === 0 && code.charAt(0) === '#') {
-							// guttered comment
-							edits.push(new vscode.TextEdit(line.range, code));
+							// leave the guttered comment as is
 						} else {
 							// padded comment/code
 							const indent = ' '.repeat(maxLabelLength); // create string with `maxLabelLength` spaces
@@ -82,11 +91,6 @@ export function activate(context: vscode.ExtensionContext) {
 			}
 
 			return edits;
-
-			// const firstLine = document.lineAt(0);
-			// if (firstLine.text !== '42') {
-			// 	return [vscode.TextEdit.insert(firstLine.range.start, '42\n')];
-			// }
 		},
 	});
 }

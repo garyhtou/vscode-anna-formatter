@@ -1,6 +1,6 @@
 {
 	"name": "anna-formatter",
-	"displayName": "anna-formatter",
+	"displayName": "ANNA Formatter",
 	"description": "Formatter for ANNA Assembly language",
 	"version": "0.0.1",
 	"repository": "https://github.com/garyhtou/vscode-anna-formatter",
