@@ -39,8 +39,10 @@ export function activate(context: vscode.ExtensionContext) {
 			}
 
 			// Add padding between end of longest label and code
-			// also make the index amount even
-			maxLabelLength += maxLabelLength % 2 === 0 ? 2 : 3;
+			// also make the index amount even. ONLY IF there is a label in the code
+			if (maxLabelLength !== 0) {
+				maxLabelLength += maxLabelLength % 2 === 0 ? 2 : 3;
+			}
 
 			// Begin making edits
 			const edits: vscode.TextEdit[] = [];
