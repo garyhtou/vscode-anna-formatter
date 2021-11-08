@@ -1,10 +1,19 @@
 {
 	"name": "anna-formatter",
 	"displayName": "ANNA Formatter",
+	"publisher": "garyhtou",
 	"description": "Formatter for ANNA Assembly language",
 	"version": "0.0.1",
 	"repository": "https://github.com/garyhtou/vscode-anna-formatter",
 	"author": "Gary Tou <gary@garytou.com> (https://garytou.com)",
+	"license": "SEE LICENSE IN LICENSE",
+	"keywords": [
+		"ANNA",
+		"assembly",
+		"formatter",
+		"Seattle University",
+		"SU"
+	],
 	"engines": {
 		"vscode": "^1.62.0"
 	},
@@ -15,8 +24,7 @@
 		"onLanguage:anna"
 	],
 	"main": "./out/extension.js",
-	"contributes": {
-	},
+	"contributes": {},
 	"scripts": {
 		"vscode:prepublish": "yarn run compile",
 		"compile": "tsc -p ./",

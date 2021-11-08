@@ -24,6 +24,11 @@ export function activate(context: vscode.ExtensionContext) {
 		provideDocumentFormattingEdits(
 			document: vscode.TextDocument
 		): vscode.TextEdit[] {
+			/*
+				THIS IS A VERY SKETCHY WAY OF TOKENIZING AND FORMATTING THE CODE.
+				SHOULD BE REWRITTEN IN THE FUTURE.
+			*/
+
 			// Find the max label length
 			var maxLabelLength: number = 0;
 			for (var i = 0; i < document.lineCount; i++) {
