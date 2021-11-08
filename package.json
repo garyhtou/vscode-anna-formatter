@@ -3,7 +3,7 @@
 	"displayName": "ANNA Formatter",
 	"publisher": "garyhtou",
 	"description": "Formatter for ANNA Assembly language",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"repository": "https://github.com/garyhtou/vscode-anna-formatter",
 	"author": "Gary Tou <gary@garytou.com> (https://garytou.com)",
 	"license": "SEE LICENSE IN LICENSE",
